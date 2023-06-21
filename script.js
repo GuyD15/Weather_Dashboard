@@ -9,6 +9,10 @@ form.addEventListener('submit', event => {
     var cityName = searchInput.value;
 
     if (cityName) {
-        
+        fetch('http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid={API_KEY}`)
+        .then(response => response.json())
+        .then(data => {
+            currentWeather.innerHTML = ''
+        })
     }
 })
