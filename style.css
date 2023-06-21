@@ -1,0 +1,7 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#current-weather, #forecast {
+    margin-top: 20px;
+}
