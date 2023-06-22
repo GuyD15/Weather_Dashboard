@@ -24,6 +24,22 @@ form.addEventListener('submit', event => {
     var cityName = searchInput.value;
 
     if (cityName) {
+        searchHistory.push(cityName);
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+
+        var button = document.createElement('button');
+        button.textContent = cityName;
+        button.addEventListener('click', function() {
+            loadWeather(cityName);
+        });
+        historyDiv.appendChild(button);
+
+        loadWeather(cityName);
+    } else {
+        alert('Please enter a city name');
+    }
+});   
+    function loadWeather(cityName) {
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`)
         .then(response => response.json())
         .then(data => {
@@ -83,7 +99,4 @@ form.addEventListener('submit', event => {
             console.error(err);
             alert('Failed to fetch weather data');
         });
-    } else {
-        alert('Please enter a city name');
     }
-});
