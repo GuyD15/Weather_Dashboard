@@ -49,13 +49,13 @@ form.addEventListener('submit', event => {
             h2.textContent = "Current Weather in " + data.name;
 
             var temp = document.createElement('p');
-            temp.textContent = "Temperature: " + data.main.temp;
+            temp.textContent = "Temperature: " + ((data.main.temp - 273.15) * 9/5 + 32).toFixed(2) + " °F";
 
             var humidity = document.createElement('p');
-            humidity.textContent = "Humidity: " + data.main.humidity;
+            humidity.textContent = "Humidity: " + data.main.humidity + "%";
 
             var wind = document.createElement('p');
-            wind.textContent = "Wind Speed: " + data.wind.speed;
+            wind.textContent = "Wind Speed: " + (data.wind.speed * 2.23694).toFixed(2) + " mph";
 
             currentWeather.appendChild(h2);
             currentWeather.appendChild(temp);
@@ -80,15 +80,15 @@ form.addEventListener('submit', event => {
                 div.appendChild(h3);
 
                 var temp = document.createElement('p');
-                temp.textContent = "Temperature: " + data.list[i].main.temp;
+                temp.textContent = "Temperature: " + ((data.list[i].main.temp - 273.15) * 9/5 + 32).toFixed(2) + " °F";
                 div.appendChild(temp);
 
                 var humidity = document.createElement('p');
-                humidity.textContent = "Humidity: " + data.list[i].main.humidity;
+                humidity.textContent = "Humidity: " + data.list[i].main.humidity + "%";
                 div.appendChild(humidity);
 
                 var wind = document.createElement('p');
-                wind.textContent = "Wind Speed: " + data.list[i].wind.speed;
+                wind.textContent = "Wind Speed: " + (data.list[i].wind.speed * 2.23694).toFixed(2) + " mph";
                 div.appendChild(wind);
 
                 forecast.appendChild(div);
