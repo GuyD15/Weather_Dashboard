@@ -2,7 +2,21 @@ var form = document.getElementById('search-bar');
 var searchInput = document.getElementById('search-input');
 var currentWeather = document.getElementById('current-weather');
 var forecast = document.getElementById('forecast');
-var API_KEY = '1c8009e235c98cf3fcc7bbe9317eab5a'
+var historyDiv = document.getElementById('history');
+var API_KEY = '1c8009e235c98cf3fcc7bbe9317eab5a';
+
+var searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+window.onload = function() {
+    searchHistory.forEach(function(city) {
+        var button = document.createElement('button');
+        button.textContent = city;
+        button.addEventListener('click', function() {
+            loadWeather(city);
+        });
+        historyDiv.appendChild(button);
+    });
+}
 
 form.addEventListener('submit', event => {
     event.preventDefault();
